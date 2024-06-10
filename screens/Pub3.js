@@ -1,6 +1,7 @@
-import React from "react";
-import { View, Image, StyleSheet } from 'react-native'; 
+import React, {useEffect} from "react";
+import { View, Image, StyleSheet, BackHandler } from 'react-native'; 
 import Pub from "../compotents/Pub";
+import PreventScreenBack from "../compotents/PreventScreenBack";
 
 export default function Pub1({navigation}) {
     
@@ -8,21 +9,24 @@ export default function Pub1({navigation}) {
     const text = "Découvez des trésors de savoir sans ouvrir votre porte-monnaie !";
     
     return(
-        <View style={styles.container}>
+        <>
+            <PreventScreenBack navigation={navigation} targetScreen='Pub3' />
+            <View style={styles.container}>
 
-            <Image 
-                source={require('../assets/pub3.png')}
-                alt="Pub 3"
-                style={styles.cover}
-            />
+                <Image 
+                    source={require('../assets/pub3.png')}
+                    alt="Pub 3"
+                    style={styles.cover}
+                />
 
-            <Pub  
-                title={title}
-                text={text}
-                step={3}
-                navigation={navigation}
-            />
-        </View> 
+                <Pub  
+                    title={title}
+                    text={text}
+                    step={3}
+                    navigation={navigation}
+                />
+            </View>
+        </> 
     );
 }
 

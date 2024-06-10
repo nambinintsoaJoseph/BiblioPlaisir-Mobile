@@ -1,6 +1,7 @@
-import React from "react";
-import { View, Image, StyleSheet } from 'react-native'; 
+import React, {useEffect} from "react";
+import { View, Image, StyleSheet, BackHandler } from 'react-native'; 
 import Pub from "../compotents/Pub";
+import PreventScreenBack from "../compotents/PreventScreenBack";
 
 export default function Pub1({navigation}) {
     
@@ -8,22 +9,24 @@ export default function Pub1({navigation}) {
     const text = "Accédez à vos livre n'importe où, que vous soyez chez vous, en voyage ou dans les transport commun.";
     
     return(
-        <View style={styles.container}>
+        <>
+            <PreventScreenBack navigation={navigation} targetScreen='Pub2' />
+            <View style={styles.container}>
 
-            <Image 
-                source={require('../assets/pub2.png')}
-                alt="Pub 2"
-                style={styles.cover}
-            />
+                <Image 
+                    source={require('../assets/pub2.png')}
+                    alt="Pub 2"
+                    style={styles.cover}
+                />
 
-            <Pub  
-                title={title}
-                text={text}
-                step={2}
-                navigation={navigation}
-            />
-        </View>
-    
+                <Pub  
+                    title={title}
+                    text={text}
+                    step={2}
+                    navigation={navigation}
+                />
+            </View>
+        </>
     );
 }
 

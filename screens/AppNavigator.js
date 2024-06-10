@@ -16,22 +16,22 @@ export default function AppNavigator() {
                 <Stack.Screen 
                     name='OpenApp'
                     component={OpenApp}
-                    options={{ title: 'OpenApp', headerShown: false, animationTypeForReplace: 'pop' }}
+                    options={{ title: 'OpenApp', headerShown: false, animation: 'none' }}
                 />
                 <Stack.Screen 
                     name='Pub1'
                     component={Pub1}
-                    options={{ title: 'Pub1', headerShown: false, animationTypeForReplace: 'pop' }}
+                    options={{ title: 'Pub1', headerShown: false, animation: 'none' }}
                 />
                 <Stack.Screen 
                     name='Pub2'
                     component={Pub2}
-                    options={{ title: 'Pub2', headerShown: false, animationTypeForReplace: 'pop' }}
+                    options={{ title: 'Pub2', headerShown: false, animation: 'none' }}
                 />
                 <Stack.Screen 
                     name='Pub3'
                     component={Pub3}
-                    options={{ title: 'Pub3', headerShown: false, animationTypeForReplace: 'pop' }}
+                    options={{ title: 'Pub3', headerShown: false, animation: 'none' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
