@@ -6,6 +6,7 @@ import OpenApp from './OpenApp';
 import Pub1 from './Pub1';
 import Pub2 from './Pub2';
 import Pub3 from './Pub3';
+import SignIn from './SignIn';
 
 const Stack = createNativeStackNavigator(); 
 
@@ -32,6 +33,11 @@ export default function AppNavigator() {
                     name='Pub3'
                     component={Pub3}
                     options={{ title: 'Pub3', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='SignIn'
+                    component={SignIn}
+                    options={{ title: 'SignIn', headerShown: false, animation: 'none' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

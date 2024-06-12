@@ -26,12 +26,9 @@ export default function Pub({title, text, step, navigation}) {
 
             <TouchableWithoutFeedback
                 onPress={() => {
-                    if (step == 1) {
-                        navigation.navigate('Pub2');
-                    }
-                    else if(step == 2) {
-                        navigation.navigate('Pub3'); 
-                    }
+                    if (step == 1) { navigation.navigate('Pub2'); }
+                    else if(step == 2) { navigation.navigate('Pub3'); }
+                    else { navigation.navigate('SignIn'); }
                 }}
             >
                 <View style={styles.containerBtn}>
