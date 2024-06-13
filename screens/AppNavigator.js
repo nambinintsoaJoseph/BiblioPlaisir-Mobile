@@ -7,6 +7,7 @@ import Pub1 from './Pub1';
 import Pub2 from './Pub2';
 import Pub3 from './Pub3';
 import SignIn from './SignIn';
+import Home from './Home';
 
 const Stack = createNativeStackNavigator(); 
 
@@ -14,6 +15,11 @@ export default function AppNavigator() {
     return(
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen 
+                    name='Home'
+                    component={Home}
+                    options={{ title: 'Home', headerShown: false, animation: 'none' }}
+                />
                 <Stack.Screen 
                     name='OpenApp'
                     component={OpenApp}

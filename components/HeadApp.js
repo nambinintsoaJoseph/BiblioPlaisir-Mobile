@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 5,
         height: 50,
+        paddingHorizontal: 10,
     }, 
 
     containerLogo: {

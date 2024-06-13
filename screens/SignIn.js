@@ -6,8 +6,8 @@ import {
     Text,
     TouchableWithoutFeedback
 } from 'react-native';
-import InputComponent from "../compotents/InputComponent";
-import PreventScreenBack from "../compotents/PreventScreenBack";
+import InputComponent from "../components/InputComponent";
+import PreventScreenBack from "../components/PreventScreenBack";
 
 export default function SignIn({navigation}) {
 
