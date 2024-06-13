@@ -5,6 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import HeadApp from "../compotents/HeadApp";
 import SearchBar from "../compotents/SearchBar";
 import NewBooks from "../compotents/NewBooks";
+import KindsOfBooks from "../compotents/KindsOfBooks";
 
 export default function Home({navigation}) {
     return(
@@ -19,6 +20,10 @@ export default function Home({navigation}) {
 
             <View>
                 <NewBooks />
+            </View>
+
+            <View>
+                <KindsOfBooks />
             </View>
         </View>
     );
