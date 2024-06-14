@@ -28,7 +28,7 @@ export default function Home({navigation}) {
                 </View>
 
                 <View style={styles.kindsOfBooks}>
-                    <KindsOfBooks />
+                    <KindsOfBooks navigation={navigation} />
                 </View>
             </View>
 

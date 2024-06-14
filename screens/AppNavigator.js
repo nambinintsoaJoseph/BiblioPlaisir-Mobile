@@ -12,6 +12,7 @@ import Collection from './Collection';
 import Vocab from './Vocab';
 import Stat from './Stat';
 import Profil from './Profil';
+import Kind from './Kind';
 
 const Stack = createNativeStackNavigator(); 
 
@@ -68,6 +69,11 @@ export default function AppNavigator() {
                     name='Profil'
                     component={Profil}
                     options={{ title: 'Profil', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='Kind'
+                    component={Kind}
+                    options={{ title: 'Kind', headerShown: false, animation: 'none' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

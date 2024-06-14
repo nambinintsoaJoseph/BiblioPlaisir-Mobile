@@ -8,6 +8,7 @@ import {
 
 import TitleScreen from "../components/TitleScreen";
 import BottomNavigation from "../components/BottomNavigation";
+import KindCover from "../components/KindCover";
 import globalStyle from "../styles/globalStyle";
 
 export default function Collection({navigation}) {

@@ -31,5 +31,6 @@ const styles = StyleSheet.create({
     
     titleScreen: {
         fontSize: 25,
+        fontWeight: 'bold'
     }
 }); 

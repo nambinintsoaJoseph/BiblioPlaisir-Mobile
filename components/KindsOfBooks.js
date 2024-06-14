@@ -8,13 +8,19 @@ import {
 } from 'react-native'; 
 import { AntDesign } from "@expo/vector-icons";
 
-export default function KindsOfBooks() {
+export default function KindsOfBooks({navigation}) {
 
     const kinds = ['Fiction', 'Horreur', 'Romance', 'Histoire', 'Science', 'Voyage', 'Cuisine', 'Contes', 'Religion']; 
 
     return (
         <View>
-            <Text style={styles.titleComponent}>Genres de livres <AntDesign name="rightcircle" size={24} color="black" /> </Text>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    navigation.navigate('Kind')
+                }}
+            >
+                <Text style={styles.titleComponent}>Genres de livres <AntDesign name="rightcircle" size={24} color="black" /> </Text>
+            </TouchableWithoutFeedback>            
             
             <View style={styles.containerBook}>
                 {kinds.map((item, index) => (
@@ -23,6 +29,7 @@ export default function KindsOfBooks() {
                     </View>
                 ))}
             </View>
+            
         </View>
     ); 
 }
