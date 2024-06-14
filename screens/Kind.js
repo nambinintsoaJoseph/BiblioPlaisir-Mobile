@@ -60,5 +60,5 @@ const styles = StyleSheet.create({
 
     kind: {
         marginBottom: 70,
-    }
+    }, 
 })
