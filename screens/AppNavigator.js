@@ -9,6 +9,9 @@ import Pub3 from './Pub3';
 import SignIn from './SignIn';
 import Home from './Home';
 import Collection from './Collection';
+import Vocab from './Vocab';
+import Stat from './Stat';
+import Profil from './Profil';
 
 const Stack = createNativeStackNavigator(); 
 
@@ -16,16 +19,6 @@ export default function AppNavigator() {
     return(
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen 
-                    name='Collection'
-                    component={Collection}
-                    options={{ title: 'Collection', headerShown: false, animation: 'none' }}
-                />
-                <Stack.Screen 
-                    name='Home'
-                    component={Home}
-                    options={{ title: 'Home', headerShown: false, animation: 'none' }}
-                />
                 <Stack.Screen 
                     name='OpenApp'
                     component={OpenApp}
@@ -50,6 +43,31 @@ export default function AppNavigator() {
                     name='SignIn'
                     component={SignIn}
                     options={{ title: 'SignIn', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='Home'
+                    component={Home}
+                    options={{ title: 'Home', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='Collection'
+                    component={Collection}
+                    options={{ title: 'Collection', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='Vocab'
+                    component={Vocab}
+                    options={{ title: 'Vocab', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='Stat'
+                    component={Stat}
+                    options={{ title: 'Stat', headerShown: false, animation: 'none' }}
+                />
+                <Stack.Screen 
+                    name='Profil'
+                    component={Profil}
+                    options={{ title: 'Profil', headerShown: false, animation: 'none' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

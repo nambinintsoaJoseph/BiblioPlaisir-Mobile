@@ -1,27 +1,20 @@
 import React from "react";
-
 import {
     View, 
-    Text, 
-    StyleSheet
-} from 'react-native'
-
+    Text
+} from 'react-native';
 import TitleScreen from "../components/TitleScreen";
 import BottomNavigation from "../components/BottomNavigation";
 import globalStyle from "../styles/globalStyle";
 
-export default function Collection({navigation}) {
-    return (
+export default function Profil({navigation}) {
+    return(
         <View style={globalStyle.container}>
-            <TitleScreen navigation={navigation} title="Ma collection" />
+            <TitleScreen title="Profil" navigation={navigation} />
 
             <View style={globalStyle.navigation}>
-                <BottomNavigation active="Collection" navigation={navigation} />
+                <BottomNavigation navigation={navigation} active='Profil' />
             </View>
         </View>
-    ); 
-} 
-
-const styles = StyleSheet.create({
-    
-}); 
+    )
+}

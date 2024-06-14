@@ -43,7 +43,13 @@ export default function SignIn({navigation}) {
                         onChangeText={setPassword}
                     />
 
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback
+                        onPress={() => {
+
+                            // Verification for validation... 
+                            navigation.navigate('Home')
+                        }}
+                    >
                         <View style={[styles.signInBtn, styles.connect]}> 
                             <Text style={styles.textBtn}>Se connecter</Text>
                         </View>

@@ -8,6 +8,9 @@ import NewBooks from "../components/NewBooks";
 import KindsOfBooks from "../components/KindsOfBooks";
 import BottomNavigation from "../components/BottomNavigation";
 
+// Global style : 
+import globalStyle from "../styles/globalStyle";
+
 export default function Home({navigation}) {
     return(
         <View style={styles.home}>
@@ -29,7 +32,7 @@ export default function Home({navigation}) {
                 </View>
             </View>
 
-            <View style={styles.navigation}>
+            <View style={globalStyle.navigation}>
                 <BottomNavigation active="Accueil" navigation={navigation} />
             </View>
         </View>
@@ -58,10 +61,5 @@ const styles = StyleSheet.create({
         marginTop: 12,
     },
 
-    navigation: {
-        position: 'absolute', 
-        bottom: 0,
-        right: 0,
-        width: '100%',
-    },
+    
 }); 
