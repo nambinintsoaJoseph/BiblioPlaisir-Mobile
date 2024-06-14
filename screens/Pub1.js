@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { View, Image, StyleSheet } from 'react-native'; 
-import Pub from "../compotents/Pub";
+import Pub from "../components/Pub";
 import PreventScreenBack from "../components/PreventScreenBack";
 
 export default function Pub1({navigation}) {

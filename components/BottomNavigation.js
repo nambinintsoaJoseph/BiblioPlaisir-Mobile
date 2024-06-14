@@ -1,44 +1,80 @@
 import React from "react";
 import {
     View,
-    TouchableNativeFeedback, 
+    TouchableWithoutFeedback, 
     StyleSheet, 
     Text
 } from 'react-native'; 
 import { Entypo, FontAwesome5, FontAwesome6, Ionicons } from "@expo/vector-icons";
 
-export default function BottomNavigation() {
+export default function BottomNavigation({navigation, active}) {
+
+    // color : #6c63ff
+
     return (
         <View style={styles.containerNavigation}>
-            <TouchableNativeFeedback>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    navigation.navigate('Home')
+                }}
+            >
                 <View style={styles.navigationElement}>
-                    <Entypo name="home" size={40} color="#6c63ff" />
+                    <Entypo 
+                        name="home" 
+                        size={30} 
+                        color={active === 'Accueil' ? '#6c63ff' : 'white' } 
+                    />
+                    <Text style={styles.textNavigation}>Accueil</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
 
-            <TouchableNativeFeedback>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    navigation.navigate('Collection')
+                }}
+            >
                 <View style={styles.navigationElement}>
-                    <FontAwesome6 name="book-bookmark" size={35} color="black" />
+                    <FontAwesome6 
+                        name="book-bookmark" 
+                        size={30} 
+                        color={active === 'Collection' ? '#6c63ff' : 'white' }
+                    />
+                    <Text style={styles.textNavigation}>Collection</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
 
-            <TouchableNativeFeedback>
+            <TouchableWithoutFeedback>
                 <View style={styles.navigationElement}>
-                    <FontAwesome6 name="file-pen" size={35} color="black" />
+                    <FontAwesome6 
+                        name="file-pen" 
+                        size={30} 
+                        color={active === 'Vocab' ? '#6c63ff' : 'white' }
+                    />
+                    <Text style={styles.textNavigation}>Vocab</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
 
-            <TouchableNativeFeedback>
+            <TouchableWithoutFeedback>
                 <View style={styles.navigationElement}>
-                    <Ionicons name="stats-chart" size={35} color="black" />
+                    <Ionicons 
+                        name="stats-chart" 
+                        size={30} 
+                        color={active === 'Stat' ? '#6c63ff' : 'white' } 
+                    />
+                    <Text style={styles.textNavigation}>Stat</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
 
-            <TouchableNativeFeedback>
+            <TouchableWithoutFeedback>
                 <View style={styles.navigationElement}>
-                    <FontAwesome5 name="user-alt" size={35} color="black" />
+                    <FontAwesome5 
+                        name="user-alt" 
+                        size={30} 
+                        color={active === 'Profil' ? '#6c63ff' : 'white' }
+                    />
+                    <Text style={styles.textNavigation}>Profil</Text>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
         </View>
     ); 
 }
@@ -48,12 +84,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        padding: 15,
+        backgroundColor: 'rgba(0, 0, 0, 1)',
+        padding: 10,
+        
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
     },
     
     navigationElement: {
         display: 'flex', 
         flexDirection: 'column'
     }, 
+
+    textNavigation: {
+        color: 'white',
+    }
 }); 

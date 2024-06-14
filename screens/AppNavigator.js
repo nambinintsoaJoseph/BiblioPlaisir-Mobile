@@ -8,6 +8,7 @@ import Pub2 from './Pub2';
 import Pub3 from './Pub3';
 import SignIn from './SignIn';
 import Home from './Home';
+import Collection from './Collection';
 
 const Stack = createNativeStackNavigator(); 
 
@@ -15,6 +16,11 @@ export default function AppNavigator() {
     return(
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen 
+                    name='Collection'
+                    component={Collection}
+                    options={{ title: 'Collection', headerShown: false, animation: 'none' }}
+                />
                 <Stack.Screen 
                     name='Home'
                     component={Home}

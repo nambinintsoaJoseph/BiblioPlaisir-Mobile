@@ -30,7 +30,7 @@ export default function Home({navigation}) {
             </View>
 
             <View style={styles.navigation}>
-                <BottomNavigation />
+                <BottomNavigation active="Accueil" navigation={navigation} />
             </View>
         </View>
     );
@@ -47,15 +47,15 @@ const styles = StyleSheet.create({
     },
 
     searchBar: {
-        marginTop: 10,
+        marginTop: 12,
     }, 
 
     newBook: {
-        marginTop: 10,
+        marginTop: 12,
     },
 
     kindsOfBooks: {
-        marginTop: 10,
+        marginTop: 12,
     },
 
     navigation: {
