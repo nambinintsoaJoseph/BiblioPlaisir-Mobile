@@ -19,8 +19,9 @@ export default function Collection({navigation}) {
         {
             id_collection: 1, 
             date_collection: "2024-06-07 10:47:52", 
-            titre: "Le métal pérou", 
-            nombre_page: 225, 
+            titre: "Le métal perdu", 
+            nombre_page: 704, 
+            nombre_page_lu: 25,
             photo_couverture: require('../assets/collection/le_metal_perou.png'), 
             nom_auteur: "SANDERSON", 
             prenom_auteur: "BRANDON"
@@ -29,7 +30,8 @@ export default function Collection({navigation}) {
             id_collection: 2, 
             date_collection: "2024-06-07 10:47:52", 
             titre: "PHP 7", 
-            nombre_page: 400, 
+            nombre_page: 633,
+            nombre_page_lu: 200, 
             photo_couverture: require('../assets/collection/php7.jpg'), 
             nom_auteur: "Engels", 
             prenom_auteur: "Jean"
@@ -38,7 +40,8 @@ export default function Collection({navigation}) {
             id_collection: 3, 
             date_collection: "2024-06-07 10:47:52", 
             titre: "UML2 par la pratique", 
-            nombre_page: 225, 
+            nombre_page: 364, 
+            nombre_page_lu: 320,
             photo_couverture: require('../assets/collection/uml.png'), 
             nom_auteur: "Roques", 
             prenom_auteur: "Pascal"
@@ -58,6 +61,7 @@ export default function Collection({navigation}) {
                         authorName={item.nom_auteur}
                         authorFullName={item.prenom_auteur}
                         numberBookPage={item.nombre_page}
+                        readPage={item.nombre_page_lu}
                     />
                 )}
                 keyExtractor={(item) => item.id_collection}

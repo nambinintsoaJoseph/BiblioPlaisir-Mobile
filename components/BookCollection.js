@@ -6,9 +6,16 @@ import {
     StyleSheet, 
     TouchableWithoutFeedback
 } from 'react-native'; 
+import { Bar } from 'react-native-progress'
 import { Entypo } from "@expo/vector-icons";
 
-export default function BookCollection({cover, title, authorName, authorFullName, numberBookPage}) {
+
+export default function BookCollection({cover, title, authorName, authorFullName, numberBookPage, readPage}) {
+    
+    const progression = () => {
+        return ((readPage * 100) / numberBookPage) / 100; 
+    }
+    
     return (
         <View style={styles.container}>
             <Image 
@@ -21,6 +28,7 @@ export default function BookCollection({cover, title, authorName, authorFullName
                 <Text style={styles.title}>{title}</Text>
                 <Text>{authorFullName.toUpperCase() + ' ' + authorName.toUpperCase()}</Text>
                 <Text>{numberBookPage} pages</Text>
+                <Bar progress={progression()} width={150} color='#6c63ff' />
                 <TouchableWithoutFeedback>
                     <View style={styles.btn}>
                         <Text style={styles.textBtn}> <Entypo name="open-book" size={24} color="white" /> Continuer</Text>
@@ -68,5 +76,5 @@ const styles = StyleSheet.create({
     textBtn: {
         color: 'white',
         fontSize: 18,
-    }
+    }, 
 }); 
