@@ -1,17 +1,30 @@
 <h2>Screenshoot</h2>
 
-<picture>
+<p float="left">
     <img src="assets/screenshoot/OpenApp.JPG" alt="" width="200">
     <img src="assets/screenshoot/Pub1.jpg" alt="" width="200">
+</p>
+
+<p float="left">
     <img src="assets/screenshoot/Pub2.jpg" alt="" width="200">
     <img src="assets/screenshoot/Pub3.jpg" alt="" width="200">
+</p>
+
+<p float="left">
     <img src="assets/screenshoot/Home.jpg" alt="" width="200">
     <img src="assets/screenshoot/Kind.jpg" alt="" width="200">
+</p>
+
+<p float="left">
     <img src="assets/screenshoot/Collection.jpg" alt="" width="200">
     <img src="assets/screenshoot/Vocab.jpg" alt="" width="200">
+</p>
+
+<p float="left">
     <img src="assets/screenshoot/Stat.jpg" alt="" width="200">
     <img src="assets/screenshoot/Profil.jpg" alt="" width="200">
-</picture>
+</p>
+    
 
 <h2>Dependences</h2>
 
