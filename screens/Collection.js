@@ -11,6 +11,7 @@ import TitleScreen from "../components/TitleScreen";
 import BottomNavigation from "../components/BottomNavigation";
 import BookCollection from "../components/BookCollection";
 import globalStyle from "../styles/globalStyle";
+import PreventScreenBack from "../components/PreventScreenBack";
 
 export default function Collection({navigation}) {
 
@@ -49,29 +50,32 @@ export default function Collection({navigation}) {
     ]
 
     return (
-        <View style={globalStyle.container}>
-            <TitleScreen navigation={navigation} title="Ma collection" />
+        <>
+            <PreventScreenBack navigation={navigation} targetScreen='Collection' />
+            <View style={globalStyle.container}>
+                <TitleScreen navigation={navigation} title="Ma collection" />
 
-            <FlatList 
-                data={collection}
-                renderItem={({item}) => (
-                    <BookCollection 
-                        cover={item.photo_couverture} 
-                        title={item.titre} 
-                        authorName={item.nom_auteur}
-                        authorFullName={item.prenom_auteur}
-                        numberBookPage={item.nombre_page}
-                        readPage={item.nombre_page_lu}
-                    />
-                )}
-                keyExtractor={(item) => item.id_collection}
-                style={styles.collection}
-            />
+                <FlatList 
+                    data={collection}
+                    renderItem={({item}) => (
+                        <BookCollection 
+                            cover={item.photo_couverture} 
+                            title={item.titre} 
+                            authorName={item.nom_auteur}
+                            authorFullName={item.prenom_auteur}
+                            numberBookPage={item.nombre_page}
+                            readPage={item.nombre_page_lu}
+                        />
+                    )}
+                    keyExtractor={(item) => item.id_collection}
+                    style={styles.collection}
+                />
 
-            <View style={globalStyle.navigation}>
-                <BottomNavigation active="Collection" navigation={navigation} />
+                <View style={globalStyle.navigation}>
+                    <BottomNavigation active="Collection" navigation={navigation} />
+                </View>
             </View>
-        </View>
+        </>
     ); 
 } 
 

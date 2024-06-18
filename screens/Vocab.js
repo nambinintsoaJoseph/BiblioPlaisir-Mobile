@@ -11,6 +11,7 @@ import TitleScreen from "../components/TitleScreen";
 import BottomNavigation from "../components/BottomNavigation";
 import globalStyle from "../styles/globalStyle";
 import Vocabulary from "../components/Vocabulary";
+import PreventScreenBack from "../components/PreventScreenBack";
 
 
 export default function Vocab({navigation}) {
@@ -76,26 +77,29 @@ export default function Vocab({navigation}) {
     ]
 
     return (
-        <View style={globalStyle.container}>
-            <TitleScreen navigation={navigation} title="Vocabulaire enregistré" />
+        <>
+            <PreventScreenBack navigation={navigation} targetScreen='Vocab' />
+            <View style={globalStyle.container}>
+                <TitleScreen navigation={navigation} title="Vocabulaire enregistré" />
 
-            <FlatList 
-                data={vocabulaire}
-                renderItem={({item}) => (
-                    <Vocabulary 
-                        word={item.mot}
-                        definition={item.definition_mot} 
-                        date={item.date_ajout}
-                    />
-                )}
-                style={{ marginBottom: 70 }}
-                keyExtractor={(item) => item.id_vocabulaire}
-            />
+                <FlatList 
+                    data={vocabulaire}
+                    renderItem={({item}) => (
+                        <Vocabulary 
+                            word={item.mot}
+                            definition={item.definition_mot} 
+                            date={item.date_ajout}
+                        />
+                    )}
+                    style={{ marginBottom: 70 }}
+                    keyExtractor={(item) => item.id_vocabulaire}
+                />
 
-            <View style={globalStyle.navigation}>
-                <BottomNavigation active="Vocab" navigation={navigation} />
+                <View style={globalStyle.navigation}>
+                    <BottomNavigation active="Vocab" navigation={navigation} />
+                </View>
             </View>
-        </View>
+        </>
     );
 }
 
