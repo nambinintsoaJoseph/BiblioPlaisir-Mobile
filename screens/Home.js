@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from 'react-native'; 
+import {useRoute} from '@react-navigation/native'
 
 // Components : 
 import HeadApp from "../components/HeadApp";
@@ -13,7 +14,14 @@ import PreventScreenBack from '../components/PreventScreenBack';
 import globalStyle from "../styles/globalStyle";
 
 export default function Home({navigation}) {
-    return(
+
+    const route = useRoute(); 
+    const { token } = route.params;
+
+    // Verification of the value of the token : 
+    // console.log(token); 
+
+    return (
         <>
             <PreventScreenBack navigation={navigation} targetScreen='Home' />
             <View style={styles.home}>

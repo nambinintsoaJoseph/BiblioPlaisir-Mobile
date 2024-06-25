@@ -4,7 +4,9 @@ import {
     View, 
     StyleSheet, 
     Text,
-    TouchableWithoutFeedback
+    Alert,
+    TouchableWithoutFeedback, 
+    ActivityIndicator
 } from 'react-native';
 import InputComponent from "../components/InputComponent";
 import PreventScreenBack from "../components/PreventScreenBack";
@@ -12,7 +14,43 @@ import PreventScreenBack from "../components/PreventScreenBack";
 export default function SignIn({navigation}) {
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');  
+    const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLogin = async () => {
+        setIsLoading(true); 
+        fetch('http://192.168.43.156:80/BiblioPlaisir/api/Authentification.php', {
+            method: 'POST', 
+            headers: {
+                'Content-type': 'application/json',
+            }, 
+            body: JSON.stringify({
+                email: email, 
+                mot_de_passe: password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.validation == true) {
+                // We recover the token : 
+                const token = data.token;
+
+                navigation.navigate('Home', {
+                    token: token,
+                }); 
+
+            }
+            else {
+                Alert.alert("Erreur d'authentification", "L'information d'authentification est incorrecte");
+                setIsLoading(false);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur authentification'); 
+            setIsLoading(false);
+        })
+        
+    }
 
     return (
         <>
@@ -43,18 +81,22 @@ export default function SignIn({navigation}) {
                         onChangeText={setPassword}
                     />
 
-                    <TouchableWithoutFeedback
-                        onPress={() => {
+                    {isLoading ? (<ActivityIndicator size="large" color="#0000ff"/>) : (
+                        <TouchableWithoutFeedback
+                            onPress={() => {
 
-                            // Verification for validation... 
-                            navigation.navigate('Home')
-                        }}
-                    >
-                        <View style={[styles.signInBtn, styles.connect]}> 
-                            <Text style={styles.textBtn}>Se connecter</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                                // Verification for validation... 
+                                handleLogin(); 
 
+                                // navigation.navigate('Home')
+                            }}
+                        >
+                            <View style={[styles.signInBtn, styles.connect]}> 
+                                <Text style={styles.textBtn}>Se connecter</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    )}
+                    
                     <Text style={styles.continue}>Mot de passe oublié ?</Text>
                     
                     <TouchableWithoutFeedback>
