@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
     View, 
     Text, 
@@ -6,7 +6,7 @@ import {
     FlatList, 
     Dimensions
 } from 'react-native'; 
-
+import { useRoute } from "@react-navigation/native";
 import TitleScreen from "../components/TitleScreen";
 import BottomNavigation from "../components/BottomNavigation";
 import globalStyle from "../styles/globalStyle";
@@ -18,63 +18,32 @@ export default function Vocab({navigation}) {
 
     const height = Dimensions.get("screen").height;
 
-    // This is just an example but the data is returned to the server : 
-    const vocabulaire = [
-        {
-            id_vocabulaire: 1, 
-            mot: 'jouer', 
-            definition_mot: "Se récréer, se divertir, s'amuser", 
-            date_ajout: "2024-06-06 21:57:54"
-        }, 
-        {
-            id_vocabulaire: 2, 
-            mot: 'similutude', 
-            definition_mot: "Transformation composée d'une homothétie et d'une rotation dans un espace affine", 
-            date_ajout: "2024-06-06 21:57:54"
-        }, 
-        {
-            id_vocabulaire: 3, 
-            mot: 'Instritutionnaliser', 
-            definition_mot: "Donner un caractère instutionnel à quelque chose", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-        {
-            id_vocabulaire: 4, 
-            mot: 'Bluetooth', 
-            definition_mot: "Enssemble de protocoles utilisant une technologie radio courte distance, destiné à simplifier les connexions entres les appareils électronique.", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-        {
-            id_vocabulaire: 5, 
-            mot: 'similutude', 
-            definition_mot: "Transformation composée d'une homothétie et d'une rotation dans un espace affine", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-        {
-            id_vocabulaire: 6, 
-            mot: 'épinard', 
-            definition_mot: "Plante potagère dicotylédone, à graine épineuse, dont les feuilles sont comestibles et se manges cuites.", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-        {
-            id_vocabulaire: 7, 
-            mot: 'crampon', 
-            definition_mot: "Pièce de métal recourbée, à une ou plusieurs pointes, qui sert dans les ouvrages de maçonnerie de charpenterie ou de menuiserie, à attacher fortement quelque chose.", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-        {
-            id_vocabulaire: 8, 
-            mot: 'crampon', 
-            definition_mot: "Pièce de métal recourbée, à une ou plusieurs pointes, qui sert dans les ouvrages de maçonnerie de charpenterie ou de menuiserie, à attacher fortement quelque chose.", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-        {
-            id_vocabulaire: 9, 
-            mot: 'crampon', 
-            definition_mot: "Pièce de métal recourbée, à une ou plusieurs pointes, qui sert dans les ouvrages de maçonnerie de charpenterie ou de menuiserie, à attacher fortement quelque chose.", 
-            date_ajout: "2024-06-06 21:57:54"
-        },
-    ]
+    const route = useRoute(); 
+    const { token } = route.params; 
+
+    const [vocabularies, setVocabularies] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('http://192.168.43.156:80/BiblioPlaisir/api/Vocabulaire.php/lecteur/4', {
+            method: 'GET', 
+            headers: {
+                'Authorization': token, 
+                'Content-type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const userVocabularies = data.map(item => ({
+                ...item, 
+            }))
+            setVocabularies(userVocabularies); 
+            setLoading(false); 
+        })
+        .catch(error => {
+            console.error('Erreur de récupération des vocabulaires : ', error);
+        })
+    }, [token]); 
 
     return (
         <>
@@ -83,7 +52,7 @@ export default function Vocab({navigation}) {
                 <TitleScreen navigation={navigation} title="Vocabulaire enregistré" />
 
                 <FlatList 
-                    data={vocabulaire}
+                    data={vocabularies}
                     renderItem={({item}) => (
                         <Vocabulary 
                             word={item.mot}

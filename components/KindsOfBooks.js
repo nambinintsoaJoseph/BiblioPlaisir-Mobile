@@ -7,8 +7,12 @@ import {
     StyleSheet
 } from 'react-native'; 
 import { AntDesign } from "@expo/vector-icons";
+import { useRoute } from '@react-navigation/native';
 
 export default function KindsOfBooks({navigation}) {
+
+    const route = useRoute();
+    const { token } = route.params;
 
     const kinds = ['Fiction', 'Horreur', 'Romance', 'Histoire', 'Science', 'Voyage', 'Cuisine', 'Contes', 'Religion']; 
 
@@ -16,7 +20,9 @@ export default function KindsOfBooks({navigation}) {
         <View>
             <TouchableWithoutFeedback
                 onPress={() => {
-                    navigation.navigate('Kind')
+                    navigation.navigate('Kind', {
+                        token: token
+                    })
                 }}
             >
                 <Text style={styles.titleComponent}>Genres de livres <AntDesign name="rightcircle" size={24} color="black" /> </Text>
