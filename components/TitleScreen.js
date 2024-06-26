@@ -6,13 +6,20 @@ import {
     TouchableWithoutFeedback
 } from 'react-native'; 
 import { AntDesign } from "@expo/vector-icons";
+import { useRoute } from '@react-navigation/native';
 
 export default function TitleScreen({navigation, title}) {
+
+    const route = useRoute();
+    const { token } = route.params;
+
     return (
         <View style={styles.container}>
             <TouchableWithoutFeedback
                 onPress={() => {
-                    navigation.navigate('Home')
+                    navigation.navigate('Home', {
+                        token: token
+                    })
                 }}
             >
                 <Text style={styles.titleScreen}>
