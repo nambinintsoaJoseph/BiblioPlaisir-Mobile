@@ -19,7 +19,7 @@ export default function BookCollection({cover, title, authorName, authorFullName
     return (
         <View style={styles.container}>
             <Image 
-                source={cover}
+                source={{ uri: 'http://192.168.43.156:80/BiblioPlaisir' + cover }}
                 alt={title}
                 style={styles.cover}
             />

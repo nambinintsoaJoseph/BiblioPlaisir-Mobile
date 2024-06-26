@@ -1,12 +1,13 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import {
     View, 
     Text, 
     StyleSheet, 
-    FlatList
-} from 'react-native'
-
+    FlatList,
+    ActivityIndicator,
+    Image
+} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 import TitleScreen from "../components/TitleScreen";
 import BottomNavigation from "../components/BottomNavigation";
 import BookCollection from "../components/BookCollection";
@@ -15,39 +16,40 @@ import PreventScreenBack from "../components/PreventScreenBack";
 
 export default function Collection({navigation}) {
 
-    // This is an example of books collection in JSON format thanks to the fetch of our endpoint
-    const collection = [
-        {
-            id_collection: 1, 
-            date_collection: "2024-06-07 10:47:52", 
-            titre: "Le métal perdu", 
-            nombre_page: 704, 
-            nombre_page_lu: 25,
-            photo_couverture: require('../assets/collection/le_metal_perou.png'), 
-            nom_auteur: "SANDERSON", 
-            prenom_auteur: "BRANDON"
-        }, 
-        {
-            id_collection: 2, 
-            date_collection: "2024-06-07 10:47:52", 
-            titre: "PHP 7", 
-            nombre_page: 633,
-            nombre_page_lu: 200, 
-            photo_couverture: require('../assets/collection/php7.jpg'), 
-            nom_auteur: "Engels", 
-            prenom_auteur: "Jean"
-        },
-        {
-            id_collection: 3, 
-            date_collection: "2024-06-07 10:47:52", 
-            titre: "UML2 par la pratique", 
-            nombre_page: 364, 
-            nombre_page_lu: 320,
-            photo_couverture: require('../assets/collection/uml.png'), 
-            nom_auteur: "Roques", 
-            prenom_auteur: "Pascal"
-        },
-    ]
+    const route = useRoute();
+    const { token } = route.params;
+
+    const [collection, setCollection] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {  
+       fetch('http://192.168.43.156:80/BiblioPlaisir/api/Collection_livre.php/lecteur/4', {
+            method: 'GET', 
+            headers: {
+                'Authorization': token, 
+                'Content-type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const userCollection = data.map(item => ({
+                ...item,
+                photo_couverture: item.photo_couverture.replace(/\\/g, ''), 
+                chemin: item.chemin.replace(/\\/g, '')
+            }))
+            setCollection(userCollection); 
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error('Erreur du chargement de la collection : ', error); 
+        })
+            
+    }, [token]);
+
+
+    if (loading) {
+        return <ActivityIndicator size="large" color="#0000ff" />;
+    }
 
     return (
         <>
@@ -63,11 +65,11 @@ export default function Collection({navigation}) {
                             title={item.titre} 
                             authorName={item.nom_auteur}
                             authorFullName={item.prenom_auteur}
-                            numberBookPage={item.nombre_page}
-                            readPage={item.nombre_page_lu}
+                            numberBookPage={parseInt(item.nombre_page, 10)} // Convert to number
+                            readPage={parseInt(item.nombre_page_lu, 10)} // Convert to number
                         />
                     )}
-                    keyExtractor={(item) => item.id_collection}
+                    keyExtractor={(item) => item.id_collection.toString()}
                     style={styles.collection}
                 />
 

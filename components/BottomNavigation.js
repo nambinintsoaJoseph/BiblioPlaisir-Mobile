@@ -7,18 +7,26 @@ import {
     KeyboardAvoidingView,
     Platform
 } from 'react-native'; 
+import { useRoute } from '@react-navigation/native'; 
+
 import { Entypo, FontAwesome5, FontAwesome6, Ionicons } from "@expo/vector-icons";
 
 export default function BottomNavigation({navigation, active}) {
 
+    const route = useRoute(); 
+    const { token } = route.params
+    
     // color : #6c63ff
+    console.log(token); 
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <View style={styles.containerNavigation}>
                 <TouchableWithoutFeedback
                     onPress={() => {
-                        navigation.navigate('Home')
+                        navigation.navigate('Home', {
+                            token: token
+                        })
                     }}
                 >
                     <View style={styles.navigationElement}>
@@ -33,7 +41,9 @@ export default function BottomNavigation({navigation, active}) {
 
                 <TouchableWithoutFeedback
                     onPress={() => {
-                        navigation.navigate('Collection')
+                        navigation.navigate('Collection', {
+                            token: token
+                        })
                     }}
                 >
                     <View style={styles.navigationElement}>
@@ -48,7 +58,10 @@ export default function BottomNavigation({navigation, active}) {
 
                 <TouchableWithoutFeedback
                     onPress={() => {
-                        navigation.navigate('Vocab')
+                        navigation.navigate('Vocab', {
+                            token: token
+                        })
+
                     }}
                 >
                     <View style={styles.navigationElement}>
@@ -63,7 +76,9 @@ export default function BottomNavigation({navigation, active}) {
 
                 <TouchableWithoutFeedback
                     onPress={() => {
-                        navigation.navigate('Stat')
+                        navigation.navigate('Stat', {
+                            token: token
+                        })
                     }}
                 >
                     <View style={styles.navigationElement}>
@@ -78,7 +93,9 @@ export default function BottomNavigation({navigation, active}) {
 
                 <TouchableWithoutFeedback
                     onPress={() => {
-                        navigation.navigate('Profil')
+                        navigation.navigate('Profil', {
+                            token: token
+                        })
                     }}
                 >
                     <View style={styles.navigationElement}>
